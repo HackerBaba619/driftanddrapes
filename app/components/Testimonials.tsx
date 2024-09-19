@@ -3,45 +3,35 @@ import React from 'react';
 const testimonials = [
   {
     id: 1,
-    name: 'Jane Doe',
-    text: 'I love the minimalist design of the clothes! They are perfect for any occasion.',
-    image: '/images/testimonial1.jpg', // Placeholder image
+    quote: "I absolutely love my new wardrobe! The minimalist designs are exactly what I was looking for.",
+    name: "Alice Johnson",
+    position: "Fashion Blogger",
   },
   {
     id: 2,
-    name: 'John Smith',
-    text: 'The quality is amazing, and the customer service was excellent!',
-    image: '/images/testimonial2.jpg', // Placeholder image
+    quote: "Drift & Drape has transformed my style. The quality is unmatched!",
+    name: "Michael Smith",
+    position: "Entrepreneur",
   },
   {
     id: 3,
-    name: 'Emily Johnson',
-    text: 'I always get compliments when I wear Drift & Drape. Highly recommend!',
-    image: '/images/testimonial3.jpg', // Placeholder image
-  },
-  {
-    id: 4,
-    name: 'Michael Brown',
-    text: 'The fit is perfect and the materials are top-notch. I’ll be back for more!',
-    image: '/images/testimonial4.jpg', // Placeholder image
+    quote: "Finally, a brand that understands minimalist fashion! Highly recommended.",
+    name: "Sarah Lee",
+    position: "Graphic Designer",
   },
 ];
 
 const Testimonials: React.FC = () => {
   return (
-    <section className="py-16 bg-gray-100">
+    <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold text-gray-900 mb-8">What Our Customers Say</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-white border rounded-lg shadow-lg p-4">
-              <img
-                src={testimonial.image}
-                alt={testimonial.name}
-                className="w-16 h-16 rounded-full mx-auto mb-4"
-              />
-              <p className="text-gray-700 italic">"{testimonial.text}"</p>
-              <h3 className="mt-2 font-semibold text-gray-800">{testimonial.name}</h3>
+            <div key={testimonial.id} className="bg-white rounded-lg shadow-lg p-6 transition-transform transform hover:scale-105">
+              <p className="text-lg italic text-gray-700">"{testimonial.quote}"</p>
+              <h3 className="mt-4 text-xl font-semibold text-gray-900">{testimonial.name}</h3>
+              <p className="text-gray-500">{testimonial.position}</p>
             </div>
           ))}
         </div>
