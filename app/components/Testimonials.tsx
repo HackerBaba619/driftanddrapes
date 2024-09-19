@@ -29,7 +29,7 @@ const Testimonials: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="bg-white rounded-lg shadow-lg p-6 transition-transform transform hover:scale-105">
-              <p className="text-lg italic text-gray-700">"{testimonial.quote}"</p>
+              <p className="text-lg italic text-gray-700">"{testimonial.quote.replace(/"/g, '&quot;')}"</p>
               <h3 className="mt-4 text-xl font-semibold text-gray-900">{testimonial.name}</h3>
               <p className="text-gray-500">{testimonial.position}</p>
             </div>
