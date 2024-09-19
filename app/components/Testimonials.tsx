@@ -9,7 +9,7 @@ const testimonials = [
   },
   {
     id: 2,
-    quote: "Drift & Drape has transformed my style. The quality is unmatched!",
+    quote: "Drift & Drape has transformed my style. The quality is unmatched! wow ",
     name: "Michael Smith",
     position: "Entrepreneur",
   },
