@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
           <Link href="/">Drift & Drape</Link>
         </div>
         <div className="hidden md:flex space-x-6">
-          <Link href="/" className="text-gray-600 hover:text-black transition">Home</Link>
+          <Link href="/Home" className="text-gray-600 hover:text-black transition">Home</Link>
           <Link href="/shop" className="text-gray-600 hover:text-black transition">Shop</Link>
           <Link href="/about" className="text-gray-600 hover:text-black transition">About</Link>
           <Link href="/contact" className="text-gray-600 hover:text-black transition">Contact</Link>
