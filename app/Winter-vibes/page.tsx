@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-import { CartProvider, useCart } from '../components/CartContext';
 
 // Define the ProductType interface
 interface ProductType {
@@ -14,17 +13,6 @@ interface ProductType {
 
 // ProductCard component
 const ProductCard: React.FC<{ product: ProductType }> = ({ product }) => {
-  const { addToCart } = useCart();
-
-  const handleAddToCart = () => {
-    addToCart({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      quantity: 1,
-    });
-  };
-
   return (
     <div className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-transform transform hover:-translate-y-1">
       <div className="bg-gray-200 h-40 mb-4 rounded-lg flex items-center justify-center">
@@ -34,7 +22,6 @@ const ProductCard: React.FC<{ product: ProductType }> = ({ product }) => {
       <p className="text-gray-700">{product.category}</p>
       <p className="text-blue-600 font-semibold">{product.price}</p>
       <button
-        onClick={handleAddToCart}
         className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-400 transition"
       >
         Add to Cart
@@ -72,8 +59,6 @@ const WinterVibes: React.FC = () => {
     { id: 24, name: 'Flannel Pajama Pants', category: 'Loungewear', price: '$30' },
     { id: 25, name: 'Winter Scarf Set', category: 'Accessories', price: '$28' },
   ];
-    // Add more hardcoded products as needed
-
 
   const itemsPerPage = 12;
   const [currentPage, setCurrentPage] = useState(1);
@@ -87,54 +72,52 @@ const WinterVibes: React.FC = () => {
   };
 
   return (
-    <CartProvider>
-      <div className="min-h-screen bg-gray-100">
-        <Navbar />
-        <section className="relative w-full h-[50vh] bg-gradient-to-r from-blue-400 to-gray-200 flex items-center justify-center">
-          <div className="relative text-center">
-            <h1 className="text-6xl font-bold text-gray-900 drop-shadow-md">Winter Vibes</h1>
-            <p className="mt-4 text-xl text-black drop-shadow-sm">Stay warm and stylish this winter</p>
-            <button className="mt-6 px-6 py-3 bg-blue-500 text-white font-medium rounded-md shadow-lg hover:bg-blue-400 transition">
-              Shop Now
-            </button>
-          </div>
-        </section>
+    <div className="min-h-screen bg-gray-100">
+      <Navbar />
+      <section className="relative w-full h-[50vh] bg-gradient-to-r from-blue-400 to-gray-200 flex items-center justify-center">
+        <div className="relative text-center">
+          <h1 className="text-6xl font-bold text-gray-900 drop-shadow-md">Winter Vibes</h1>
+          <p className="mt-4 text-xl text-black drop-shadow-sm">Stay warm and stylish this winter</p>
+          <button className="mt-6 px-6 py-3 bg-blue-500 text-white font-medium rounded-md shadow-lg hover:bg-blue-400 transition">
+            Shop Now
+          </button>
+        </div>
+      </section>
 
-        {/* Product Grid */}
-        <section className="p-8">
-          <h2 className="text-2xl font-bold mb-6 text-center">Featured Products</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {currentProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </section>
-
-        {/* Pagination */}
-        <section className="flex justify-center py-8">
-          {currentPage > 1 && (
-            <button onClick={() => handlePageChange(currentPage - 1)} className="mx-2 px-4 py-2 bg-gray-300 text-gray-900 rounded-md">
-              Previous
-            </button>
-          )}
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index + 1}
-              onClick={() => handlePageChange(index + 1)}
-              className={`mx-2 px-4 py-2 rounded-md ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-900'}`}
-            >
-              {index + 1}
-            </button>
+      {/* Product Grid */}
+      <section className="p-8">
+        <h2 className="text-2xl font-bold mb-6 text-center">Featured Products</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {currentProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))}
-          {currentPage < totalPages && (
-            <button onClick={() => handlePageChange(currentPage + 1)} className="mx-2 px-4 py-2 bg-gray-300 text-gray-900 rounded-md">
-              Next
-            </button>
-          )}
-        </section>
-        <Footer />
-      </div>
-    </CartProvider>
+        </div>
+      </section>
+
+      {/* Pagination */}
+      <section className="flex justify-center py-8">
+        {currentPage > 1 && (
+          <button onClick={() => handlePageChange(currentPage - 1)} className="mx-2 px-4 py-2 bg-gray-300 text-gray-900 rounded-md">
+            Previous
+          </button>
+        )}
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => handlePageChange(index + 1)}
+            className={`mx-2 px-4 py-2 rounded-md ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-900'}`}
+          >
+            {index + 1}
+          </button>
+        ))}
+        {currentPage < totalPages && (
+          <button onClick={() => handlePageChange(currentPage + 1)} className="mx-2 px-4 py-2 bg-gray-300 text-gray-900 rounded-md">
+            Next
+          </button>
+        )}
+      </section>
+      <Footer />
+    </div>
   );
 };
 
