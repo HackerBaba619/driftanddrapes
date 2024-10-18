@@ -1,0 +1,18 @@
+[
+    { "id": 1, "name": "Tailored Blazer", "category": "Blazers", "price": "$85" },
+    { "id": 2, "name": "Chic Pencil Skirt", "category": "Skirts", "price": "$50" },
+    { "id": 3, "name": "Classic White Shirt", "category": "Shirts", "price": "$30" },
+    { "id": 4, "name": "Dress Pants", "category": "Pants", "price": "$60" },
+    { "id": 5, "name": "Leather Briefcase", "category": "Accessories", "price": "$120" },
+    { "id": 6, "name": "Smartwatch", "category": "Accessories", "price": "$200" },
+    { "id": 7, "name": "Office Tote Bag", "category": "Accessories", "price": "$45" },
+    { "id": 8, "name": "Stylish Flats", "category": "Shoes", "price": "$40" },
+    { "id": 9, "name": "Formal Shoes", "category": "Shoes", "price": "$70" },
+    { "id": 10, "name": "Silk Tie", "category": "Accessories", "price": "$25" },
+    { "id": 11, "name": "Office Dress", "category": "Dresses", "price": "$75" },
+    { "id": 12, "name": "Sweater Vest", "category": "Sweaters", "price": "$35" },
+    { "id": 13, "name": "Knit Cardigan", "category": "Sweaters", "price": "$55" },
+    { "id": 14, "name": "Classic Pencil Dress", "category": "Dresses", "price": "$80" },
+    { "id": 15, "name": "Blouse", "category": "Shirts", "price": "$35" }
+  ]
+  

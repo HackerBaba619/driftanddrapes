@@ -1,21 +1,34 @@
-import React from 'react';
+
+// components/Navbar.tsx
+
 import Link from 'next/link';
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   return (
-    <nav className="w-full bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="text-2xl font-bold text-gray-800">
-          <Link href="/">Drift & Drape</Link>
-        </div>
-        <div className="hidden md:flex space-x-6">
-          <Link href="/Home" className="text-gray-600 hover:text-black transition">Home</Link>
-          <Link href="/shop" className="text-gray-600 hover:text-black transition">Shop</Link>
-          <Link href="/about" className="text-gray-600 hover:text-black transition">About</Link>
-          <Link href="/contact" className="text-gray-600 hover:text-black transition">Contact</Link>
-        </div>
-        <div className="text-gray-800 hover:text-black transition">
-          <Link href="/cart">🛒</Link>
+    <nav className="bg-white shadow-md py-4">
+      <div className="container mx-auto flex justify-between items-center">
+        <Link href="/" className="text-2xl font-bold text-gray-900">
+          Drift & Drapes
+        </Link>
+        <div className="space-x-6">
+          <Link href="/" className="text-gray-700 hover:text-gray-900">
+            Home
+          </Link>
+          <Link href="/Summer-vibes" className="text-gray-700 hover:text-gray-900">
+            Summer Vibes
+          </Link>
+          <Link href="/Winter-vibes" className="text-gray-700 hover:text-gray-900">
+            Winter Vibes
+          </Link>
+          <Link href="/Office-vibes" className="text-gray-700 hover:text-gray-900">
+            Office Vibes
+          </Link>
+          <Link href="/shop" className="text-gray-700 hover:text-gray-900">
+            Shop
+          </Link>
+          <Link href="/CartPage" className="text-gray-700 hover:text-gray-900">
+            Cart
+          </Link>
         </div>
       </div>
     </nav>

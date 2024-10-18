@@ -1,0 +1,28 @@
+[
+    { "id": 1, "name": "Cozy Knit Sweater", "category": "Sweaters", "price": "$50" },
+    { "id": 2, "name": "Winter Parka Jacket", "category": "Jackets", "price": "$120" },
+    { "id": 3, "name": "Fleece Lined Leggings", "category": "Bottoms", "price": "$35" },
+    { "id": 4, "name": "Chunky Scarves", "category": "Accessories", "price": "$25" },
+    { "id": 5, "name": "Thermal Gloves", "category": "Accessories", "price": "$15" },
+    { "id": 6, "name": "Wool Beanie", "category": "Accessories", "price": "$20" },
+    { "id": 7, "name": "Long Sleeve Turtleneck", "category": "Tops", "price": "$40" },
+    { "id": 8, "name": "Puffer Vest", "category": "Jackets", "price": "$75" },
+    { "id": 9, "name": "Plaid Flannel Shirt", "category": "Tops", "price": "$35" },
+    { "id": 10, "name": "Knee-High Boots", "category": "Footwear", "price": "$90" },
+    { "id": 11, "name": "Thermal Underwear", "category": "Bottoms", "price": "$30" },
+    { "id": 12, "name": "Cable Knit Mittens", "category": "Accessories", "price": "$18" },
+    { "id": 13, "name": "Faux Fur Jacket", "category": "Jackets", "price": "$150" },
+    { "id": 14, "name": "Lounge Joggers", "category": "Bottoms", "price": "$40" },
+    { "id": 15, "name": "Warm Hoodie", "category": "Sweaters", "price": "$55" },
+    { "id": 16, "name": "Down Fill Jacket", "category": "Jackets", "price": "$160" },
+    { "id": 17, "name": "Patterned Wool Socks", "category": "Accessories", "price": "$10" },
+    { "id": 18, "name": "Thermal Boots", "category": "Footwear", "price": "$85" },
+    { "id": 19, "name": "Insulated Gloves", "category": "Accessories", "price": "$22" },
+    { "id": 20, "name": "Pajama Set", "category": "Loungewear", "price": "$45" },
+    { "id": 21, "name": "Winter Skirt", "category": "Bottoms", "price": "$55" },
+    { "id": 22, "name": "Chunky Knit Blanket", "category": "Accessories", "price": "$65" },
+    { "id": 23, "name": "Snow Pants", "category": "Bottoms", "price": "$70" },
+    { "id": 24, "name": "Flannel Pajama Pants", "category": "Loungewear", "price": "$30" },
+    { "id": 25, "name": "Winter Scarf Set", "category": "Accessories", "price": "$28" }
+  ]
+  

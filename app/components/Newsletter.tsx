@@ -31,7 +31,7 @@ const Newsletter: React.FC = () => {
               className="w-full md:w-1/3 px-4 py-2 border border-gray-400 rounded-l-md focus:outline-none focus:border-gray-600"
               required
             />
-            <button type="submit" className="bg-black text-white px-4 py-2 rounded-r-md hover:bg-gray-800 transition">
+            <button type="submit" className="bg-black text-white px-4 py-2 rounded-r-md hover:bg-black transition">
               Subscribe
             </button>
           </form>
