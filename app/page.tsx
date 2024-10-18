@@ -7,23 +7,23 @@ import FeaturedCollection from './components/FeaturedCollection';
 import Testimonials from './components/Testimonials';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
-import { CartProvider } from './components/CartContext'; 
+
 import { AppProps } from 'next/app';
-import ProductList from './components/ProductList';
+
 
 const Home: React.FC<AppProps> = () => {
   return (
-    <div><CartProvider >
+    <div>
       
         <Navbar />
         <HeroSection />
         <FeaturedCollection />
-        <ProductList />
+       
         <Testimonials />
         <Newsletter />
         <Footer />
       
-    </CartProvider></div>
+   </div>
   );
 };
 
