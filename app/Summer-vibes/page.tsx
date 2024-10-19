@@ -1,29 +1,51 @@
-// app/Summer-vibes/page.tsx
+'use client'; // Required for Next.js App Router
+
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
+// Define Product Type
 interface Product {
-  _id: string;
+  id: number;
   name: string;
   category: string;
   price: string;
 }
 
-const fetchProducts = async () => {
-  const response = await fetch('http://localhost:3000/api/products/Summer-vibes');
-  if (!response.ok) {
-    throw new Error('Failed to fetch products');
-  }
-  return response.json();
-};
+// Hardcoded Summer Vibes Products
+const products: Product[] = [
+  { id: 1, name: "White Summer T-Shirt", category: "T-Shirts", price: "$25" },
+  { id: 2, name: "Printed Beach Dress", category: "Dresses", price: "$45" },
+  { id: 3, name: "Straw Sun Hat", category: "Accessories", price: "$15" },
+  { id: 4, name: "Floral Maxi Dress", category: "Dresses", price: "$60" },
+  { id: 5, name: "Sunglasses", category: "Accessories", price: "$20" },
+  { id: 6, name: "Linen Casual Shirt", category: "T-Shirts", price: "$30" },
+  { id: 7, name: "Cotton Summer Shorts", category: "T-Shirts", price: "$35" },
+  { id: 8, name: "Striped Beach Towels", category: "Accessories", price: "$12" },
+  { id: 9, name: "Woven Sandals", category: "Accessories", price: "$40" },
+  { id: 10, name: "Floral Bikini", category: "Dresses", price: "$50" },
+  { id: 11, name: "Flip Flops", category: "Accessories", price: "$10" },
+  { id: 12, name: "Boho Crop Top", category: "T-Shirts", price: "$28" },
+  { id: 13, name: "Printed Kaftan", category: "Dresses", price: "$55" },
+  { id: 14, name: "Tie-dye Scarf", category: "Accessories", price: "$18" },
+  { id: 15, name: "Cotton Wrap Skirt", category: "Dresses", price: "$32" },
+  { id: 16, name: "Hawaiian Shirt", category: "T-Shirts", price: "$38" },
+  { id: 17, name: "Fringe Crossbody Bag", category: "Accessories", price: "$65" },
+  { id: 18, name: "Beach Sarong", category: "Accessories", price: "$22" },
+  { id: 19, name: "Swim Trunks", category: "T-Shirts", price: "$29" },
+  { id: 20, name: "Sunset Print Dress", category: "Dresses", price: "$48" },
+  { id: 21, name: "Aviator Sunglasses", category: "Accessories", price: "$25" },
+  { id: 22, name: "Wicker Picnic Basket", category: "Accessories", price: "$50" },
+  { id: 23, name: "Summer Mesh Top", category: "T-Shirts", price: "$42" },
+  { id: 24, name: "Beach Blanket", category: "Accessories", price: "$35" },
+  { id: 25, name: "Tropical Print Swimwear", category: "Dresses", price: "$58" }
+];
 
-const SummerVibes = async () => {
-  const products: Product[] = await fetchProducts();
-
+const SummerVibes: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
+      
       {/* Hero Section */}
       <section className="relative w-full h-[50vh] bg-gradient-to-r from-yellow-400 to-orange-300 flex items-center justify-center">
         <div className="relative text-center">
@@ -41,7 +63,7 @@ const SummerVibes = async () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {products.map((product) => (
             <div
-              key={product._id}
+              key={product.id}
               className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-transform transform hover:-translate-y-1"
             >
               <div className="bg-gray-200 h-40 mb-4 rounded-lg flex items-center justify-center">
@@ -58,6 +80,7 @@ const SummerVibes = async () => {
           ))}
         </div>
       </section>
+
       <Footer />
     </div>
   );
