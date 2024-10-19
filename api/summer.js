@@ -1,28 +1,48 @@
-import express from 'express';
-import pg from 'pg';
+import React, { useEffect, useState } from 'react';
 
-const router = express.Router();
-const { Pool } = pg;
+const SummerVibes = () => {
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-const pool = new Pool({
-  connectionString: process.env.POSTGRES_URL,
-});
+    const fetchProducts = async (page = 1) => {
+        try {
+            const res = await fetch(`/api/summer?page=${page}`);
+            if (!res.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await res.json();
+            setProducts(data); // Set the products in state
+        } catch (err) {
+            setError(err.message); // Set the error message
+            console.error('Error fetching products:', err);
+        } finally {
+            setLoading(false); // Set loading to false regardless of success or failure
+        }
+    };
 
-// Route to fetch summer products with pagination
-router.get('/', async (req, res) => {
-    const page = parseInt(req.query.page) || 1; // Default to page 1
-    const limit = parseInt(req.query.limit) || 10; // Default to 10 products per page
-    const offset = (page - 1) * limit; // Calculate offset
+    useEffect(() => {
+        fetchProducts(); // Call the function to fetch products on component mount
+    }, []); // Empty dependency array to run only on mount
 
-    try {
-        // Ensure you're using the 'pool' variable here
-        const products = await pool.query('SELECT * FROM products WHERE category = $1 LIMIT $2 OFFSET $3', ['Summer', limit, offset]);
-        console.log(products.rows); // Log the result
-        res.status(200).json(products.rows);
-    } catch (error) {
-        console.error('Error fetching products:', error); // Log any errors
-        res.status(500).json({ error: 'Internal Server Error' });
+    if (loading) {
+        return <div>Loading...</div>; // Show loading state
     }
-});
 
-export default router;
+    if (error) {
+        return <div>Error: {error}</div>; // Show error message
+    }
+
+    return (
+        <div>
+            <h1>Summer Vibes Products</h1>
+            <ul>
+                {products.map((product) => (
+                    <li key={product.id}>{product.name}</li> // Display product name
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+export default SummerVibes;

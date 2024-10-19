@@ -19,11 +19,23 @@ const SummerVibes: React.FC = () => {
 
   const fetchProducts = async (page: number) => {
     setLoading(true);
-    const res = await fetch(`/api/summer?page=${page}`);
-    const data = await res.json();
-    setProducts(data.products);
-    setTotalPages(data.totalPages);
-    setLoading(false);
+    try {
+      const res = await fetch(`/api/summer?page=${page}`);
+      if (!res.ok) {
+        throw new Error('Failed to fetch products');
+      }
+      const data = await res.json();
+
+      // Assuming your API response structure has products and totalPages
+      setProducts(data); // Set the products from the response directly
+      // If your API returns total pages, adjust accordingly
+      setTotalPages(Math.ceil(data.length / 10)); // Assuming 10 products per page
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      // Handle error state if needed
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
