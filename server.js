@@ -1,6 +1,7 @@
 import express from 'express';
 import pg from 'pg';
 import dotenv from 'dotenv';
+import summerRoute from './api/summer'; // Adjust the import according to your file structure
 
 dotenv.config(); // Load environment variables
 
@@ -13,17 +14,8 @@ const pool = new Pool({
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Route to fetch summer products
-app.get('/api/summer', async (req, res) => {
-    try {
-        const products = await pool.query('SELECT * FROM products WHERE category = $1', ['Summer']);
-        console.log(products.rows); // Log the result
-        res.status(200).json(products.rows);
-    } catch (error) {
-        console.error('Error fetching products:', error); // Log any errors
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
+// Use the summer route for /api/summer
+app.use('/api/summer', summerRoute); // This should properly register the route
 
 // Start the server
 app.listen(PORT, () => {
