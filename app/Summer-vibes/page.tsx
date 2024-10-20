@@ -13,22 +13,20 @@ interface Product {
 
 const SummerVibes: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null); // Added error state
 
-  const fetchProducts = async (page: number) => {
+  const fetchProducts = async () => {
     setLoading(true);
     setError(null); // Reset error state before fetching
     try {
-      const res = await fetch(`/api/summer?page=${page}`);
+      // Updated fetch call to remove pagination
+      const res = await fetch('/api/summer');
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
       const data = await res.json();
       setProducts(data.products);
-      setTotalPages(data.totalPages);
     } catch (error: unknown) {
       console.error('Error fetching products:', error);
       setError('Failed to fetch products.'); // Set error message
@@ -38,20 +36,8 @@ const SummerVibes: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchProducts(currentPage);
-  }, [currentPage]);
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+    fetchProducts();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -76,47 +62,25 @@ const SummerVibes: React.FC = () => {
         ) : error ? (
           <p className="text-red-500">{error}</p> // Display error message
         ) : (
-          <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {products.map((product) => (
-                <div
-                  key={product.id}
-                  className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-transform transform hover:-translate-y-1"
-                >
-                  <div className="bg-gray-200 h-40 mb-4 rounded-lg flex items-center justify-center">
-                    {/* Placeholder for Product Image */}
-                    <span className="text-gray-500 text-lg">Image</span>
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900">{product.name}</h3>
-                  <p className="text-gray-700">{product.category}</p>
-                  <p className="text-yellow-600 font-semibold">{product.price}</p>
-                  <button className="mt-4 w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-400 transition">
-                    Add to Cart
-                  </button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-transform transform hover:-translate-y-1"
+              >
+                <div className="bg-gray-200 h-40 mb-4 rounded-lg flex items-center justify-center">
+                  {/* Placeholder for Product Image */}
+                  <span className="text-gray-500 text-lg">Image</span>
                 </div>
-              ))}
-            </div>
-            {/* Pagination Controls */}
-            <div className="flex justify-center mt-8">
-              <button 
-                onClick={handlePreviousPage}
-                disabled={currentPage === 1}
-                className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-400 transition disabled:opacity-50"
-              >
-                Previous
-              </button>
-              <span className="mx-4 text-lg">
-                Page {currentPage} of {totalPages}
-              </span>
-              <button 
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-                className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-400 transition disabled:opacity-50"
-              >
-                Next
-              </button>
-            </div>
-          </>
+                <h3 className="text-lg font-bold text-gray-900">{product.name}</h3>
+                <p className="text-gray-700">{product.category}</p>
+                <p className="text-yellow-600 font-semibold">{product.price}</p>
+                <button className="mt-4 w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-400 transition">
+                  Add to Cart
+                </button>
+              </div>
+            ))}
+          </div>
         )}
       </section>
 
