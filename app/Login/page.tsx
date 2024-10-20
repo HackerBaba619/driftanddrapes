@@ -1,4 +1,5 @@
 // app/login/page.tsx
+'use client';
 import React from "react";
 import { signIn } from "next-auth/react";
 
