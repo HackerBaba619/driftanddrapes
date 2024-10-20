@@ -16,23 +16,23 @@ const SummerVibes: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchProducts = async (page: number) => {
     setLoading(true);
+    setError(null);
+
     try {
       const res = await fetch(`/api/summer?page=${page}`);
       if (!res.ok) {
-        throw new Error('Failed to fetch products');
+        throw new Error(`Failed to fetch products: ${res.statusText}`);
       }
-      const data = await res.json();
 
-      // Assuming your API response structure has products and totalPages
-      setProducts(data); // Set the products from the response directly
-      // If your API returns total pages, adjust accordingly
-      setTotalPages(Math.ceil(data.length / 10)); // Assuming 10 products per page
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      // Handle error state if needed
+      const data = await res.json();
+      setProducts(data.products);
+      setTotalPages(data.totalPages);
+    } catch (err) {
+      setError((err as Error).message);
     } finally {
       setLoading(false);
     }
@@ -57,7 +57,7 @@ const SummerVibes: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className="relative w-full h-[50vh] bg-gradient-to-r from-yellow-400 to-orange-300 flex items-center justify-center">
         <div className="relative text-center">
@@ -74,6 +74,8 @@ const SummerVibes: React.FC = () => {
         <h2 className="text-2xl font-bold mb-6 text-center">Featured Products</h2>
         {loading ? (
           <p>Loading...</p>
+        ) : error ? (
+          <p className="text-red-500">Error: {error}</p>
         ) : (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
