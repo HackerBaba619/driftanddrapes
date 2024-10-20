@@ -1,5 +1,5 @@
 // SummerVibes.tsx
-'use client';
+'use client'; 
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -30,7 +30,7 @@ const ProductComponent: React.FC<{ product: Product }> = ({ product }) => {
       </div>
       <h3 className="text-lg font-bold text-gray-900">{product.name}</h3>
       <p className="text-gray-700">{product.category}</p>
-      <p className="text-yellow-600 font-semibold">{product.price}</p>
+      <p className="text-yellow-600 font-semibold">$ {product.price}</p>
       <button
         onClick={handleAddToCart}
         className="mt-4 w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-400 transition"
@@ -73,7 +73,7 @@ const SummerVibes: React.FC = () => {
       <Navbar />
       {/* Your Hero Section Here */}
       <section className="p-8">
-        <h2 className="text-2xl font-bold mb-6 text-center">Featured Products</h2>
+        <h2 className="text-2xl font-bold mb-6  text-center">Featured Products</h2>
         {loading ? (
           <p>Loading...</p>
         ) : error ? (

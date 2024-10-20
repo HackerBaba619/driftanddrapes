@@ -73,7 +73,7 @@ const WinterVibes: React.FC = () => {
                 </div>
                 <h3 className="text-lg font-bold text-gray-900">{product.name}</h3>
                 <p className="text-gray-700">{product.category}</p>
-                <p className="text-blue-600 font-semibold">{product.price}</p>
+                <p className="text-blue-600 font-semibold">$ {product.price}</p>
                 <button className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-400 transition">
                   Add to Cart
                 </button>
