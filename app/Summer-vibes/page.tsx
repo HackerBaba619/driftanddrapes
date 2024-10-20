@@ -16,23 +16,22 @@ const SummerVibes: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null); // Added error state
 
   const fetchProducts = async (page: number) => {
     setLoading(true);
-    setError(null);
-
+    setError(null); // Reset error state before fetching
     try {
       const res = await fetch(`/api/summer?page=${page}`);
       if (!res.ok) {
-        throw new Error(`Failed to fetch products: ${res.statusText}`);
+        throw new Error(`HTTP error! status: ${res.status}`);
       }
-
       const data = await res.json();
       setProducts(data.products);
       setTotalPages(data.totalPages);
-    } catch (err) {
-      setError((err as Error).message);
+    } catch (error: unknown) {
+      console.error('Error fetching products:', error);
+      setError('Failed to fetch products.'); // Set error message
     } finally {
       setLoading(false);
     }
@@ -57,7 +56,7 @@ const SummerVibes: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-
+      
       {/* Hero Section */}
       <section className="relative w-full h-[50vh] bg-gradient-to-r from-yellow-400 to-orange-300 flex items-center justify-center">
         <div className="relative text-center">
@@ -75,7 +74,7 @@ const SummerVibes: React.FC = () => {
         {loading ? (
           <p>Loading...</p>
         ) : error ? (
-          <p className="text-red-500">Error: {error}</p>
+          <p className="text-red-500">{error}</p> // Display error message
         ) : (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
