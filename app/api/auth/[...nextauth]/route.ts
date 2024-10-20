@@ -16,7 +16,7 @@ interface User {
   password: string; // Include password for validation
 }
 
-export const authOptions = {
+const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -58,8 +58,6 @@ export const authOptions = {
   pages: {
     signIn: '/login', // Custom login page
   },
-};
-
-const handler = NextAuth(authOptions);
+});
 
 export { handler as GET, handler as POST };
