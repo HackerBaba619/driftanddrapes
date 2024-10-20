@@ -1,4 +1,3 @@
-// app/api/auth/[...nextauth]/route.ts
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { sql } from "@vercel/postgres";
@@ -9,7 +8,7 @@ interface Credentials {
   password: string;
 }
 
-// Define the shape of the user from the database (including password for validation)
+// Define the shape of the user from the database
 interface User {
   id: string; // Expecting id to be a string for NextAuth compatibility
   name: string;
@@ -34,15 +33,15 @@ export const authOptions = {
 
         try {
           // Fetch user data from PostgreSQL
-          const result = await sql<User[]>`
-            SELECT id::text, name, email, password FROM users WHERE username = ${username}
+          const result = await sql`
+            SELECT id::text AS id, name, email, password FROM users WHERE username = ${username}
           `;
 
-          // Check if we got any results back
-          if (result.rowCount && result.rowCount > 0) {
-            const user = result.rows[0]; // Access the first row
+          // Check if we got any results back and handle rowCount potentially being null
+          if (result.rowCount !== null && result.rowCount > 0) {
+            const user: User = result.rows[0] as User; // Cast to User type
 
-            // Direct comparison of passwords (without hashing)
+            // Directly compare the password without hashing
             if (password === user.password) {
               // Return only id, name, and email to NextAuth
               return { id: user.id, name: user.name, email: user.email };
